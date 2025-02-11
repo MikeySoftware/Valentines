@@ -57,6 +57,14 @@
     </div>
     
     <script>
+        // Preload images to improve performance
+        const imageCache = [
+            'giphy.gif', 'giphy-1.gif', 'giphy-2.gif', 'giphy-3.gif', 'giphy-4.gif', 'giphy-5.gif', 'giphy-6.gif', 'giphy-7.gif'
+        ];
+        imageCache.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
         let yesStage = 0;
         let noStage = 0;
         let finalNoStage = false;
