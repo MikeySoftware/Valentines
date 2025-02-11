@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: rgba(254, 99, 125, 0.521);
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-family: 'Rubik Doodle Shadow', cursive;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, hotpink, red);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .no-button {
+            position: relative;
+        }
+        button {
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            background: linear-gradient(to right, hotpink, red);
+            color: white;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(to right, red, hotpink);
+        }
+        .no-button {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="valentineImage" src="giphy.gif" alt="Valentine Image" width="300">
+        <h1 id="valentineText"><span class="gradient-text">Will you be my Valentine? 🩷❤️🧡💛💚🩵💙💜🖤🩶🤍🤎</span></h1>
+        <div class="buttons">
+            <button onclick="yesFlow()">Yes</button>
+            <button id="noButton" class="no-button" onclick="noFlow()">No</button>
+        </div>
+    </div>
+    
+    <script>
+        let yesStage = 0;
+        let noStage = 0;
+        let finalNoStage = false;
+
+        function yesFlow() {
+            if (yesStage === 0) {
+                document.getElementById('valentineImage').src = 'giphy-6.gif';
+                document.getElementById('valentineText').textContent = 'Are you sure!? 🤗🙂‍↔️😊';
+                yesStage++;
+            } else {
+                document.getElementById('valentineImage').src = 'giphy-7.gif';
+                document.getElementById('valentineText').textContent = 'YAYYYYYYY I LOVE YOU SO MUCH POOOOKSSSSS YOU WILL NOT REGRET SAYING YES LETTTTSSSSS GOOOOOOOOOOOOO';
+                document.querySelector('.buttons').style.display = 'none';
+            }
+        }
+
+        function noFlow() {
+            let noTexts = [
+                "Uhhhh must've been a mis-click? 😁", 
+                "NANIIIIIIIIII!!!!!!! Think about all the fun times we've had! 🥺", 
+                "What if I buy you some Flaming Hot chips for your tummy!?", 
+                "OK BUCKO NOT FUNNY I will be very sad :(, I WILL BURN THIS PLACE TO THE GROUND!😡",
+                "You can't say no forever..."
+            ];
+            let noImages = ["giphy-2.gif", "giphy-1.gif", "giphy-3.gif", "giphy-4.gif", "giphy-5.gif"];
+            
+            yesStage = 0; // Reset yesStage if no is clicked
+            
+            if (noStage < noTexts.length) {
+                document.getElementById('valentineImage').src = noImages[noStage];
+                document.getElementById('valentineText').textContent = noTexts[noStage];
+                noStage++;
+            } else {
+                finalNoStage = true;
+                moveNoButton();
+            }
+        }
+
+        function moveNoButton() {
+            let noButton = document.getElementById('noButton');
+            noButton.style.position = 'absolute';
+            noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        }
+
+        document.getElementById('noButton').addEventListener('mouseover', function() {
+            if (finalNoStage) moveNoButton();
+        });
+    </script>
+</body>
+</html>
